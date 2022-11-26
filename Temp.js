@@ -13,6 +13,18 @@ while i < length(A)
 end while
 return A
 
+function insertionSort() {
+    for (let i = 1; i < amount; i++) {
+        let x = graph[i];
+        let j = i - 1;
+        while (j >= 0 && graph[j] > x) {
+            graph[j+1] = graph[j];
+            j--;
+        }
+        graph[j+1] = x;
+    }
+}
+
 
 
 # SELECTION SORT #
@@ -33,6 +45,23 @@ while i < length(A)-1
 end while
 return A
 
+function selection() {
+    for (let i = 0; i < amount-1; i++) {
+        let minIndex = i;
+        let j = i+1;
+        while (j < amount) {
+            if (graph[j] < graph[minIndex]) {
+                minIndex = j;
+            }
+        }
+        if (minIndex != i) {
+            let temp = graph[i];
+            graph[i] = graph[minIndex];
+            graph[minIndex] = temp;
+        }
+    }
+}
+
 
 
 # MERGE SORT (top-down) #
@@ -48,6 +77,19 @@ mergesort(A as list)
 
     return merge(left, right)
 end func
+
+function mergesort(A[]) {
+    if (A.length == 1) {
+        return A;
+    }
+    let left = ???
+    let right = ???
+
+    left = mergesort(left);
+    right = mergesort(right);
+
+    return merge(left, right);
+}
 
 merge(A as list, B as list):
     C ← []
@@ -71,3 +113,25 @@ merge(A as list, B as list):
     end while
     return C
 end func
+
+function merge(A[], B[]) {
+    let C = []; //list elr lika stor som A+B
+    while (A.length > 0 && B.length) {
+        if (A[0] > B[0]) {
+            C.add(B[0]);
+            B.remove(0);
+        } else {
+            C.add(A[0]);
+            A.remove(0);
+        }
+    }
+    while (A.length > 0) {
+        C.add(A[0]);
+        A.remove(0);
+    }
+    while (B.length > 0) {
+        C.add(B[0]);
+        B.remove(0);
+    }
+    return C;
+}
