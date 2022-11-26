@@ -17,19 +17,27 @@ function updateAmount() {
         let pillar = document.createElement("div");
         pillar.setAttribute("value", i);
         pillar.classList.add("pillar");
-        pillar.style.height = (i+1)*5 + "px";
         graph.append(pillar);
+    }
+    updateDisplay();
+}
+
+function updateDisplay() {
+    for (let i = 0; i < amount; i++) {
+        let pillar = graph.children[i];
+        pillar.style.height = (pillar.getAttribute("value") + 1)*5 + "px";
     }
 }
 
 function shuffle() {
     console.log("shuffle");
     for (let i = 0; i < amount; i++) {
-        let temp = graph. children[i];
+        let temp = graph.children[i].getAttribute("value");
         let rand = Math.floor(Math.random() * amount);
-        console.log(temp.value + ", " + rand);
-        graph.children[i].replaceChild(newNode, graph.children[rand]);
-        graph.children[rand].replaceChild(newNode, temp);
+        console.log(temp + ", " + rand);
+        graph.children[i].setAttribute("value", graph.children[rand].getAttribute("value"));
+        graph.children[rand].setAttribute("value", temp);
+        updateDisplay();
     }
     
 }
