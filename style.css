@@ -10,12 +10,14 @@ body {
     height: 100%;
     margin: 4vw;
     border-style: solid;
+    padding-left: 1px;
 
 }
 
 .pillar {
-    width: 20px;
+    width: 5px;
     height: 20px;
     background-color: black;
     margin: 1px;
+    margin-left:0;
 }
