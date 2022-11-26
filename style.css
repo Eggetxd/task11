@@ -1,0 +1,21 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.graph {
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+    margin: 4vw;
+    border-style: solid;
+
+}
+
+.pillar {
+    width: 20px;
+    height: 20px;
+    background-color: black;
+    margin: 1px;
+}
