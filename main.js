@@ -30,7 +30,7 @@ function updateDisplay() {
     }
 }
 
-function sleep(milliseconds) {
+function slep(milliseconds) {
     let time = Date.now();
     let newTime = Date.now();
     while (time + milliseconds > newTime) {
@@ -51,5 +51,16 @@ function shuffle() {
 }
 
 function sort() {
-
+    console.log("sort");
+    for (let i = 1; i < amount; i++) {
+        let x = graph.children[i].getAttribute("value");
+        let j = i - 1;
+        while (j >= 0 && graph.children[j].getAttribute("value") > x) {
+            graph.children[j+1].setAttribute("value", graph.children[j].getAttribute("value"));
+            j--;
+        }
+        graph.children[j+1].setAttribute("value", x);
+        slep(100);
+        updateDisplay();
+    }
 }
