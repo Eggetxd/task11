@@ -25,7 +25,16 @@ function updateAmount() {
 function updateDisplay() {
     for (let i = 0; i < amount; i++) {
         let pillar = graph.children[i];
-        pillar.style.height = (pillar.getAttribute("value") + 1)*5 + "px";
+        let value = pillar.getAttribute("value") + 1;
+        pillar.style.height = value*5 + "px";
+    }
+}
+
+function sleep(milliseconds) {
+    let time = Date.now();
+    let newTime = Date.now();
+    while (time + milliseconds > newTime) {
+        newTime = Date.now();
     }
 }
 
@@ -39,7 +48,6 @@ function shuffle() {
         graph.children[rand].setAttribute("value", temp);
         updateDisplay();
     }
-    
 }
 
 function sort() {
