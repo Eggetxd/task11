@@ -46,7 +46,9 @@ function shuffle() {
         console.log(temp + ", " + rand);
         graph.children[i].setAttribute("value", graph.children[rand].getAttribute("value"));
         graph.children[rand].setAttribute("value", temp);
-        updateDisplay();
+        
+        
+        setTimeout(updateDisplay(), 1000);
     }
 }
 
@@ -54,13 +56,19 @@ function sort() {
     console.log("sort");
     for (let i = 1; i < amount; i++) {
         let x = graph.children[i].getAttribute("value");
+        graph.children[i].style.backgroundColor = "red";
         let j = i - 1;
         while (j >= 0 && graph.children[j].getAttribute("value") > x) {
             graph.children[j+1].setAttribute("value", graph.children[j].getAttribute("value"));
+            graph.children[j].style.backgroundColor = "red";
+            slep(300);
+            graph.children[j].style.backgroundColor = "black";
+            updateDisplay();
             j--;
         }
         graph.children[j+1].setAttribute("value", x);
-        slep(100);
+        
+        graph.children[i].style.backgroundColor = "black";
         updateDisplay();
     }
 }
