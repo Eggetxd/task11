@@ -25,7 +25,8 @@ function updateAmount() {
 function updateDisplay() {
     for (let i = 0; i < amount; i++) {
         let pillar = graph.children[i];
-        let value = pillar.getAttribute("value") + 1;
+        let value = pillar.getAttribute("value");
+        value++;
         pillar.style.height = value*5 + "px";
     }
 }
