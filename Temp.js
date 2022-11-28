@@ -14,16 +14,21 @@ end while
 return A
 
 function insertionSort() {
+    console.log("sort");
     for (let i = 1; i < amount; i++) {
-        let x = graph[i];
+        let x = graph.children[i].getAttribute("value");
         let j = i - 1;
-        while (j >= 0 && graph[j] > x) {
-            graph[j+1] = graph[j];
+        while (j >= 0 && graph.children[j].getAttribute("value") > x) {
+            graph.children[j+1].setAttribute("value", graph.children[j].getAttribute("value"));
             j--;
         }
-        graph[j+1] = x;
+        graph.children[j+1].setAttribute("value", x);
+        updateDisplay();
     }
+    updateDisplay();
 }
+
+funkar inte???
 
 
 
@@ -37,6 +42,7 @@ while i < length(A)-1
         if A[j] < A[minIndex] then
             minIndex ← j
         end if
+        j++
     end while
     if minIndex != i then
         swap A[i] and A[minIndex]
@@ -46,20 +52,22 @@ end while
 return A
 
 function selection() {
+    console.log("sort");
     for (let i = 0; i < amount-1; i++) {
         let minIndex = i;
         let j = i+1;
         while (j < amount) {
-            if (graph[j] < graph[minIndex]) {
+            if (graph.children[j].getAttribute("value") < graph.children[minIndex].getAttribute("value")) {
                 minIndex = j;
             }
         }
         if (minIndex != i) {
-            let temp = graph[i];
-            graph[i] = graph[minIndex];
-            graph[minIndex] = temp;
+            let temp = graph.children[i].getAttribute("value");
+            graph.children[i].setAttribute("value", graph.children[minIndex].getAttribute("value"));
+            graph.children[minIdex].setAttribute("value", temp);
         }
     }
+    updateDisplay();
 }
 
 
@@ -134,4 +142,17 @@ function merge(A[], B[]) {
         B.remove(0);
     }
     return C;
+}
+
+
+
+
+function bubbelsort() {
+    for (let i = 0; i < amount-1; i++) {
+        if (graph.children[i].getAttribute("value") > graph.children[i+1].getAttribute("value")) {
+            let temp = graph.children[i].getAttribute("value");
+            graph.children[i].setAttribute("value", graph.children[i+1].getAttribute("value"));
+            graph.children[i+1].setAttribute("value", temp);
+        }
+    }
 }

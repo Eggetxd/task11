@@ -1,7 +1,7 @@
 "use strict";
 
 let graph = document.querySelector("[data-graph]");
-let amount = 10
+let amount = 10;
 
 updateAmount()
 function updateAmount() {
@@ -23,11 +23,12 @@ function updateAmount() {
 }
 
 function updateDisplay() {
-    for (let i = 0; i < amount; i++) {
+    for (let i = 0; i < amount; i++) {        
         let pillar = graph.children[i];
         let value = pillar.getAttribute("value");
         value++;
         pillar.style.height = value*5 + "px";
+        pillar.style.backgroundColor = "black";
     }
 }
 
@@ -55,21 +56,17 @@ function shuffle() {
 
 function sort() {
     console.log("sort");
-    for (let i = 1; i < amount; i++) {
-        let x = graph.children[i].getAttribute("value");
-        graph.children[i].style.backgroundColor = "red";
-        let j = i - 1;
-        while (j >= 0 && graph.children[j].getAttribute("value") > x) {
-            graph.children[j+1].setAttribute("value", graph.children[j].getAttribute("value"));
-            graph.children[j].style.backgroundColor = "red";
-            slep(300);
-            graph.children[j].style.backgroundColor = "black";
-            updateDisplay();
-            j--;
+    let sorted = true;
+    while (sorted) {
+        sorted = false;
+        for (let i = 0; i < amount-1; i++) {
+            if (graph.children[i].getAttribute("value") > graph.children[i+1].getAttribute("value")) {
+                let temp = graph.children[i].getAttribute("value");
+                graph.children[i].setAttribute("value", graph.children[i+1].getAttribute("value"));
+                graph.children[i+1].setAttribute("value", temp);
+                sorted = true;
+            }
         }
-        graph.children[j+1].setAttribute("value", x);
-        
-        graph.children[i].style.backgroundColor = "black";
-        updateDisplay();
     }
+    updateDisplay();
 }
